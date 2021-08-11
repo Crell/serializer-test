@@ -6,8 +6,7 @@ namespace Crell\SerializerTest\Config;
 
 class System
 {
-    /** @var CacheConfig[] */
-    public array $cacheConfigurations = [];
+    public Caching $caching;
 
     public function __construct(
         array $cacheConfigurations = [],
@@ -20,11 +19,18 @@ class System
         private array $features = [],
     )
     {
-        $this->cacheConfigurations = $cacheConfigurations;
+        $this->caching = new Caching();
+        $this->caching->cacheConfigurations = $cacheConfigurations;
     }
 
     public function isFeatureEnabled(string $feature): bool
     {
         return $this->features[$feature] ?? false;
     }
+}
+
+class Caching
+{
+    /** @var array<string, CacheConfig> */
+    public array $cacheConfigurations = [];
 }

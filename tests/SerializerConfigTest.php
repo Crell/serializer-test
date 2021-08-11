@@ -123,8 +123,7 @@ class SerializerConfigTest extends TestCase
                 self::assertFalse($out->isFeatureEnabled('unifiedPageTranslationHandling'));
                 self::assertEquals([1], $out->systemMaintainers);
 
-                var_dump($out);
-                self::assertCount(5, $out->cacheConfigurations);
+                self::assertCount(5, $out->caching->cacheConfigurations);
             },
         ];
     }
