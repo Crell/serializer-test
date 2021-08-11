@@ -6,11 +6,8 @@ namespace Crell\SerializerTest\Config;
 
 class System
 {
-    /** @var CacheConfig[] */
-    public array $cacheConfigurations = [];
-
     public function __construct(
-        array $cacheConfigurations = [],
+        public ?Caching $caching = null,
         public string $devIPmask = '',
         public int $displayErrors = 0,
         public string $encryptionKey = '',
@@ -20,7 +17,7 @@ class System
         private array $features = [],
     )
     {
-        $this->cacheConfigurations = $cacheConfigurations;
+        $this->caching ??= new Caching();
     }
 
     public function isFeatureEnabled(string $feature): bool
@@ -28,3 +25,4 @@ class System
         return $this->features[$feature] ?? false;
     }
 }
+

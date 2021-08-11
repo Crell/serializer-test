@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Crell\SerializerTest;
 
 use Crell\SerializerTest\Config\BackEnd;
+use Crell\SerializerTest\Config\Caching;
 use Crell\SerializerTest\Config\Extensions;
 use Crell\SerializerTest\Config\FrontEnd;
 use Crell\SerializerTest\Config\Mail;
@@ -122,9 +123,8 @@ class SerializerConfigTest extends TestCase
                 self::assertFalse($out->isFeatureEnabled('not-defined'));
                 self::assertFalse($out->isFeatureEnabled('unifiedPageTranslationHandling'));
                 self::assertEquals([1], $out->systemMaintainers);
-
-                var_dump($out);
-                self::assertCount(5, $out->cacheConfigurations);
+                self::assertInstanceOf(Caching::class, $out->caching);
+                self::assertCount(5, $out->caching->cacheConfigurations);
             },
         ];
     }
