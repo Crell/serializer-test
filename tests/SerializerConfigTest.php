@@ -22,7 +22,6 @@ use Symfony\Component\Serializer\NameConverter\MetadataAwareNameConverter;
 use Symfony\Component\Serializer\Normalizer\ArrayDenormalizer;
 use Symfony\Component\Serializer\Normalizer\DateTimeNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
-use Symfony\Component\Serializer\Normalizer\PropertyNormalizer;
 use Symfony\Component\Serializer\Serializer;
 
 class SerializerConfigTest extends TestCase
@@ -31,7 +30,6 @@ class SerializerConfigTest extends TestCase
     {
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory);
-        $infoExtractor = new ReflectionExtractor();
 
         $extractor = new PropertyInfoExtractor([], [new PhpDocExtractor(), new ReflectionExtractor()]);
 
