@@ -1,0 +1,37 @@
+{
+    "name": "crell/serializer-test",
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/Crell/fp.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/Crell/AttributeUtils.git"
+        },
+        {
+            "type": "git",
+            "url": "https://github.com/Crell/Serde.git"
+        }
+    ],
+    "require": {
+        "vishnubob/wait-for-it": "dev-master",
+        "symfony/serializer": "^5.3",
+        "symfony/property-access": "^5.3",
+        "doctrine/annotations": "^1.13",
+        "crell/serde": "dev-master"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Crell\\SerializerTest\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Crell\\SerializerTest\\": "tests"
+        }
+    }
+}
