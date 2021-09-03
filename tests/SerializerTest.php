@@ -6,6 +6,7 @@ namespace Crell\SerializerTest;
 
 
 use Crell\SerializerTest\Drupal\EmailItem;
+use Crell\SerializerTest\Drupal\Field;
 use Crell\SerializerTest\Drupal\FieldItemList;
 use Crell\SerializerTest\Drupal\LinkItem;
 use Crell\SerializerTest\Drupal\Node;
@@ -33,7 +34,15 @@ class SerializerTest extends TestCase
     {
         $classMetadataFactory = new ClassMetadataFactory(new AnnotationLoader(new AnnotationReader()));
         $metadataAwareNameConverter = new MetadataAwareNameConverter($classMetadataFactory);
-        $discriminator = new ClassDiscriminatorFromClassMetadata($classMetadataFactory);
+//        $discriminator = new ClassDiscriminatorFromClassMetadata($classMetadataFactory);
+
+        $discriminator = new ManualDiscriminator();
+        $discriminator->addMap(Field::class, 'type', [
+            'string' => StringItem::class,
+            'email' => EmailItem::class,
+            'LinkItem' => LinkItem::class,
+            'text' => TextItem::class,
+        ]);
 
         $extractor = new PropertyInfoExtractor([], [new PhpDocExtractor(), new ReflectionExtractor()]);
 
