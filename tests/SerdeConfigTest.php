@@ -17,6 +17,7 @@ use Crell\SerializerTest\SerdeConfig\FrontEnd;
 use Crell\SerializerTest\SerdeConfig\Mail;
 use Crell\SerializerTest\SerdeConfig\MailFormat;
 use Crell\SerializerTest\SerdeConfig\PasswordHashing;
+use Crell\SerializerTest\SerdeConfig\ScOptions;
 use Crell\SerializerTest\SerdeConfig\System;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend;
@@ -128,6 +129,13 @@ class SerdeConfigTest extends TestCase
                 self::assertInstanceOf(CacheOptions::class, $out->caching['core']->options);
                 self::assertEquals(0, $out->caching['core']->options->defaultLifetime);
                 self::assertEquals(false, $out->caching['core']->options->compression);
+            },
+        ];
+        yield ScOptions::class => [
+            'key' => 'SC_OPTIONS',
+            'class' => ScOptions::class,
+            'tests' => function (ScOptions $out) {
+                self::assertEquals([], $out['ext/install']['update']);
             },
         ];
     }
