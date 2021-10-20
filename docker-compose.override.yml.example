@@ -1,0 +1,12 @@
+# Copy this file to docker-compose.override.yml, then replace
+# the user/group IDs below with yours. That file does not get
+# committed to Git.
+
+version: "3"
+services:
+    php80:
+        user: 1000:1000
+    php81:
+        user: 1000:1000
+    profile:
+        user: 1000:1000
