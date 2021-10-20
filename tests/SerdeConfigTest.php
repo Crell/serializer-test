@@ -9,6 +9,8 @@ use Crell\AttributeUtils\MemoryCacheAnalyzer;
 use Crell\Serde\Formatter\ArrayFormatter;
 use Crell\Serde\Serde;
 use Crell\SerializerTest\SerdeConfig\BackEnd;
+use Crell\SerializerTest\SerdeConfig\CacheConfig;
+use Crell\SerializerTest\SerdeConfig\CacheOptions;
 use Crell\SerializerTest\SerdeConfig\Caching;
 use Crell\SerializerTest\SerdeConfig\Extensions;
 use Crell\SerializerTest\SerdeConfig\FrontEnd;
@@ -16,6 +18,8 @@ use Crell\SerializerTest\SerdeConfig\Mail;
 use Crell\SerializerTest\SerdeConfig\PasswordHashing;
 use Crell\SerializerTest\SerdeConfig\System;
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend;
+use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 
 class SerdeConfigTest extends TestCase
 {
@@ -115,6 +119,12 @@ class SerdeConfigTest extends TestCase
                 self::assertEquals([], $out->systemMaintainers);
                 self::assertInstanceOf(Caching::class, $out->caching);
                 self::assertCount(12, $out->caching->cacheConfigurations);
+                self::assertInstanceOf(CacheConfig::class, $out->caching['core']);
+                self::assertEquals(PhpFrontend::class, $out->caching['core']->frontend);
+                self::assertEquals(SimpleFileBackend::class, $out->caching['core']->backend);
+                self::assertInstanceOf(CacheOptions::class, $out->caching['core']->options);
+                self::assertEquals(0, $out->caching['core']->options->defaultLifetime);
+                self::assertEquals(false, $out->caching['core']->options->compression);
             },
         ];
     }
