@@ -15,6 +15,7 @@ use Crell\SerializerTest\SerdeConfig\Caching;
 use Crell\SerializerTest\SerdeConfig\Extensions;
 use Crell\SerializerTest\SerdeConfig\FrontEnd;
 use Crell\SerializerTest\SerdeConfig\Mail;
+use Crell\SerializerTest\SerdeConfig\MailFormat;
 use Crell\SerializerTest\SerdeConfig\PasswordHashing;
 use Crell\SerializerTest\SerdeConfig\System;
 use PHPUnit\Framework\TestCase;
@@ -64,7 +65,9 @@ class SerdeConfigTest extends TestCase
             'key' => 'MAIL',
             'class' => Mail::class,
             'tests' => function(Mail $out) {
+                self::assertEquals(MailFormat::Both, $out->format);
                 self::assertEquals('sendmail', $out->transport);
+                self::assertEquals('localhost:25', $out->transportSmtpServer);
             },
         ];
         /*
