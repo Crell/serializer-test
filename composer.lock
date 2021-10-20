@@ -8,17 +8,18 @@
     "packages": [
         {
             "name": "crell/attributeutils",
-            "version": "0.3.0",
+            "version": "0.3.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crell/AttributeUtils.git",
-                "reference": "7a7f6f3c86799f141dec599e08314d9aada168c8"
+                "reference": "ce6fff515fbc83b4405ddcd658e09b25dab30813"
             },
             "require": {
                 "crell/fp": ">=0.1.1",
                 "php": "~8.0"
             },
             "require-dev": {
+                "phpbench/phpbench": "^1.1",
                 "phpstan/phpstan": "^0.12.93",
                 "phpunit/phpunit": "~9.0"
             },
@@ -66,15 +67,15 @@
                 "Attributes",
                 "Reflection"
             ],
-            "time": "2021-09-27T19:38:57+00:00"
+            "time": "2021-10-20T15:34:11+00:00"
         },
         {
             "name": "crell/fp",
-            "version": "0.2.2",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crell/fp.git",
-                "reference": "506dfde9c45805d2df09bba2c1e55d5624ed4637"
+                "reference": "8484978128ec940886e643bf8aba99cdc747bf72"
             },
             "require": {
                 "php": "~8.0"
@@ -96,7 +97,8 @@
                 },
                 "files": [
                     "src/array.php",
-                    "src/composition.php"
+                    "src/composition.php",
+                    "src/string.php"
                 ]
             },
             "autoload-dev": {
@@ -133,7 +135,7 @@
                 "FP",
                 "Functional"
             ],
-            "time": "2021-10-06T11:57:50+00:00"
+            "time": "2021-10-08T13:07:09+00:00"
         },
         {
             "name": "crell/serde",
@@ -141,11 +143,11 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crell/Serde.git",
-                "reference": "399d5568720df7bc964815f7b957fda28888832a"
+                "reference": "f1d314304a3975077a4c72d03f520daccbcdd370"
             },
             "require": {
-                "crell/attributeutils": ">= 0.3.0",
-                "crell/fp": ">= 0.2.0",
+                "crell/attributeutils": ">= 0.3.2",
+                "crell/fp": ">= 0.2.3",
                 "php": "~8.0"
             },
             "require-dev": {
@@ -197,13 +199,13 @@
                     "role": "Developer"
                 }
             ],
-            "description": "WIP",
+            "description": "A general purpose serialization and deserialization library",
             "homepage": "https://github.com/Crell/Serde",
             "keywords": [
                 "Database",
                 "Serde"
             ],
-            "time": "2021-10-05T16:25:47+00:00"
+            "time": "2021-10-20T15:44:40+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1808,16 +1810,16 @@
         },
         {
             "name": "phpdocumentor/reflection-docblock",
-            "version": "5.2.2",
+            "version": "5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpDocumentor/ReflectionDocBlock.git",
-                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556"
+                "reference": "622548b623e81ca6d78b721c5e029f4ce664f170"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/069a785b2141f5bcf49f3e353548dc1cce6df556",
-                "reference": "069a785b2141f5bcf49f3e353548dc1cce6df556",
+                "url": "https://api.github.com/repos/phpDocumentor/ReflectionDocBlock/zipball/622548b623e81ca6d78b721c5e029f4ce664f170",
+                "reference": "622548b623e81ca6d78b721c5e029f4ce664f170",
                 "shasum": ""
             },
             "require": {
@@ -1828,7 +1830,8 @@
                 "webmozart/assert": "^1.9.1"
             },
             "require-dev": {
-                "mockery/mockery": "~1.3.2"
+                "mockery/mockery": "~1.3.2",
+                "psalm/phar": "^4.8"
             },
             "type": "library",
             "extra": {
@@ -1858,9 +1861,9 @@
             "description": "With this component, a library can provide support for annotations via DocBlocks or otherwise retrieve information that is embedded in a DocBlock.",
             "support": {
                 "issues": "https://github.com/phpDocumentor/ReflectionDocBlock/issues",
-                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/master"
+                "source": "https://github.com/phpDocumentor/ReflectionDocBlock/tree/5.3.0"
             },
-            "time": "2020-09-03T19:13:55+00:00"
+            "time": "2021-10-19T17:43:47+00:00"
         },
         {
             "name": "phpdocumentor/type-resolver",
@@ -3351,6 +3354,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {

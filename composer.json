@@ -27,7 +27,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Crell\\SerializerTest\\": "src"
+            "Crell\\SerializerTest\\": "src",
+            "TYPO3\\CMS\\Core\\": "t3stubs"
         }
     },
     "autoload-dev": {
