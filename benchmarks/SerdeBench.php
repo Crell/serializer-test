@@ -45,6 +45,8 @@ class SerdeBench
 
     protected readonly array $config;
 
+    protected readonly array $configData;
+
     public function setUp(): void
     {
         $this->serde = new Serde(formatters: [new ArrayFormatter()]);
@@ -52,6 +54,7 @@ class SerdeBench
         $this->symfony = $this->getSymfonySerializer();
 
         $this->config = require __DIR__ . '/LocalConfiguration.php';
+        $this->configData = iterator_to_array($this->configProvider());
     }
 
     protected function getSymfonySerializer(): Serializer
@@ -74,7 +77,7 @@ class SerdeBench
 
     public function benchSerde(): void
     {
-        foreach ($this->configProvider() as $test) {
+        foreach ($this->configData as $test) {
             $data = $this->config[$test['key']];
             $object = $this->serde->deserialize($data, from: 'array', to: $test['class']);
             $array = $this->serde->serialize($object, 'array');
@@ -83,7 +86,7 @@ class SerdeBench
 
     public function benchSymfony(): void
     {
-        foreach ($this->configProvider() as $test) {
+        foreach ($this->configData as $test) {
             $data = $this->config[$test['key']];
             $object = $this->symfony->denormalize($data, $test['class']);
             $array = $this->symfony->normalize($object);
