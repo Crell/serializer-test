@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Crell\SerializerTest;
 
-use Crell\SerializerTest\Config\BackEnd;
-use Crell\SerializerTest\Config\Caching;
-use Crell\SerializerTest\Config\Extensions;
-use Crell\SerializerTest\Config\FrontEnd;
-use Crell\SerializerTest\Config\Mail;
-use Crell\SerializerTest\Config\PasswordHashing;
-use Crell\SerializerTest\Config\System;
+use Crell\SerialzerTest\Config\BackEnd;
+use Crell\SerialzerTest\Config\Caching;
+use Crell\SerialzerTest\Config\Extensions;
+use Crell\SerialzerTest\Config\FrontEnd;
+use Crell\SerialzerTest\Config\Mail;
+use Crell\SerialzerTest\Config\PasswordHashing;
+use Crell\SerialzerTest\Config\System;
 use Doctrine\Common\Annotations\AnnotationReader;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;

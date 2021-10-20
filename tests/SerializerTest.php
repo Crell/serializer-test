@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace Crell\SerializerTest;
 
 
-use Crell\SerializerTest\Drupal\EmailItem;
-use Crell\SerializerTest\Drupal\Field;
-use Crell\SerializerTest\Drupal\FieldItemList;
-use Crell\SerializerTest\Drupal\LinkItem;
-use Crell\SerializerTest\Drupal\Node;
-use Crell\SerializerTest\Drupal\StringItem;
-use Crell\SerializerTest\Drupal\TextItem;
+use Crell\SerialzerTest\Drupal\EmailItem;
+use Crell\SerialzerTest\Drupal\Field;
+use Crell\SerialzerTest\Drupal\FieldItemList;
+use Crell\SerialzerTest\Drupal\LinkItem;
+use Crell\SerialzerTest\Drupal\Node;
+use Crell\SerialzerTest\Drupal\StringItem;
+use Crell\SerialzerTest\Drupal\TextItem;
 use Doctrine\Common\Annotations\AnnotationReader;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\PropertyInfo\Extractor\PhpDocExtractor;
