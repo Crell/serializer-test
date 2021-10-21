@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Crell\SerializerTest\Benchmarks;
 
+use Crell\AttributeUtils\Analyzer;
+use Crell\AttributeUtils\MemoryCacheAnalyzer;
 use Crell\Serde\Formatter\ArrayFormatter;
 use Crell\Serde\Serde;
 use Crell\SerializerTest\Config\BackEnd;
@@ -49,7 +51,8 @@ class ComparisonBench
 
     public function setUp(): void
     {
-        $this->serde = new Serde(formatters: [new ArrayFormatter()]);
+        $analyzer = new MemoryCacheAnalyzer(new Analyzer());
+        $this->serde = new Serde(analyzer: $analyzer, formatters: [new ArrayFormatter($analyzer)]);
 
         $this->symfony = $this->getSymfonySerializer();
 

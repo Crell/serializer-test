@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Crell\SerializerTest\SerdeConfig;
+namespace Crell\SerializerTest\SerdeConfig\System;
 
 use Symfony\Component\Serializer\Annotation\SerializedName;
 

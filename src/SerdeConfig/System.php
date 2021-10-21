@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Crell\SerializerTest\SerdeConfig;
 
+use Crell\SerializerTest\SerdeConfig\System\Caching;
+
 class System
 {
     public function __construct(
