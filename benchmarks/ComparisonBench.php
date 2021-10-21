@@ -37,7 +37,7 @@ use Symfony\Component\Serializer\Serializer;
  * @AfterMethods({"tearDown"})
  * @OutputTimeUnit("milliseconds", precision=3)
  */
-class SerdeBench
+class ComparisonBench
 {
     protected readonly Serde $serde;
 
