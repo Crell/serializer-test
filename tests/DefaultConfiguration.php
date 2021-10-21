@@ -1538,9 +1538,20 @@ return [
     // supported depends on the script. See documentation "Inside TYPO3" for examples. Keys in the array are the relative
     // path of a script (for output scripts it should be the "script ID" as found in a comment in the HTML header ) and
     // values can then be anything that scripts wants to define for itself. The key "GLOBAL" is reserved.
+    // NOTE: Some extra data here provided by Larry for demo purposes.
     'SC_OPTIONS' => [
         'ext/install' => [
+            'class' => \Crell\SerializerTest\SerdeConfig\ScOptions\ExtInstall::class,
             'update' => [],
+        ],
+        'ext/myext' => [
+            'class' => \Crell\SerializerTest\SerdeConfig\ScOptions\ExtMyExt::class,
+            'level' => 5,
+            'defaultValue' => 'farewell world',
+            'settings' => [
+                ['firstName' => 'Larry', 'lastName' => 'Garfield'],
+                ['firstName' => 'Jon', 'lastName' => 'Arbuckle'],
+            ],
         ],
     ],
     'SVCONF' => [],

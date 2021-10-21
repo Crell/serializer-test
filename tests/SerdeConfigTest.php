@@ -135,7 +135,10 @@ class SerdeConfigTest extends TestCase
             'key' => 'SC_OPTIONS',
             'class' => ScOptions::class,
             'tests' => function (ScOptions $out) {
-                self::assertEquals([], $out['ext/install']['update']);
+                self::assertEquals([], $out['ext/install']->update);
+                self::assertEquals(5, $out['ext/myext']->level);
+                self::assertEquals('farewell world', $out['ext/myext']->defaultValue);
+                self::assertEquals('Larry', $out['ext/myext']->settings[0]->firstName);
             },
         ];
     }

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Crell\SerializerTest\SerdeConfig;
 
+use Crell\Serde\ClassNameTypeMap;
 use Crell\Serde\Field;
 
 class ScOptions implements \ArrayAccess
 {
     public function __construct(
         #[Field(flatten: true)]
+        #[ClassNameTypeMap(key: 'class')]
         public readonly array $options = []
     ) {}
 
