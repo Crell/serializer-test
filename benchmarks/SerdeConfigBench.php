@@ -8,6 +8,7 @@ use Crell\AttributeUtils\Analyzer;
 use Crell\AttributeUtils\MemoryCacheAnalyzer;
 use Crell\Serde\Formatter\ArrayFormatter;
 use Crell\Serde\Serde;
+use Crell\Serde\SerdeCommon;
 use Crell\SerializerTest\SerdeConfig\BackEnd;
 use Crell\SerializerTest\SerdeConfig\Extensions;
 use Crell\SerializerTest\SerdeConfig\FrontEnd;
@@ -41,7 +42,7 @@ class SerdeConfigBench
     public function setUp(): void
     {
         $analyzer = new MemoryCacheAnalyzer(new Analyzer());
-        $this->serde = new Serde(
+        $this->serde = new SerdeCommon(
             analyzer: $analyzer,
             formatters: [new ArrayFormatter($analyzer)],
         );

@@ -8,6 +8,7 @@ use Crell\AttributeUtils\Analyzer;
 use Crell\AttributeUtils\MemoryCacheAnalyzer;
 use Crell\Serde\Formatter\ArrayFormatter;
 use Crell\Serde\Serde;
+use Crell\Serde\SerdeCommon;
 use Crell\SerializerTest\SerdeConfig\BackEnd;
 use Crell\SerializerTest\SerdeConfig\System\CacheConfig;
 use Crell\SerializerTest\SerdeConfig\System\CacheOptions;
@@ -29,7 +30,7 @@ class SerdeConfigTest extends TestCase
     public function getSerde(): Serde
     {
         $analyzer = new MemoryCacheAnalyzer(new Analyzer());
-        return new Serde(
+        return new SerdeCommon(
             analyzer: $analyzer,
             formatters: [new ArrayFormatter($analyzer)],
         );

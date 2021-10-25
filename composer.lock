@@ -143,7 +143,7 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crell/Serde.git",
-                "reference": "c04e0f728f53ef5e9bd7f972def5ab23194ab1e8"
+                "reference": "be82b5ef8e4ccc7da640a6c19a257c76c62ef0db"
             },
             "require": {
                 "crell/attributeutils": ">= 0.3.2",
@@ -205,7 +205,7 @@
                 "Database",
                 "Serde"
             ],
-            "time": "2021-10-21T19:43:50+00:00"
+            "time": "2021-10-25T23:50:23+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -3354,7 +3354,6 @@
                     "type": "github"
                 }
             ],
-            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {
