@@ -21,6 +21,7 @@ use Crell\SerializerTest\SerdeConfig\PasswordHashing;
 use Crell\SerializerTest\SerdeConfig\ScOptions;
 use Crell\SerializerTest\SerdeConfig\System;
 use Crell\SerializerTest\SerdeTCA\Ctrl;
+use Crell\SerializerTest\SerdeTCA\OnChange;
 use Crell\SerializerTest\SerdeTCA\Table;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend;
@@ -85,6 +86,10 @@ class SerdeTCATest extends TestCase
                 self::assertEquals('', $out->ctrl->enableColumns->disabled);
                 self::assertEquals(true, $out->ctrl->security->ignoreRootLevelRestriction);
                 self::assertEquals('mimetypes-media-image', $out->ctrl->typeiconClasses[2]);
+
+                self::assertEquals(OnChange::None, $out->columns['fileinfo']->config->onChange);
+                self::assertEquals('LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file.storage', $out->columns['storage']->label);
+
             },
         ];
     }
