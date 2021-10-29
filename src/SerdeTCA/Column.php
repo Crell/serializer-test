@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Crell\SerializerTest\SerdeTCA;
 
+use Crell\Serde\DictionaryField;
 use Crell\Serde\Field;
 use Crell\Serde\Renaming\Cases;
-use Crell\Serde\TypeMap;
+use Crell\Serde\SequenceField;
+use Crell\Serde\StaticTypeMap;
 
 class Column
 {
@@ -31,7 +33,7 @@ enum OnChange: string
     case Reload = 'reload';
 }
 
-#[TypeMap('type', [
+#[StaticTypeMap('type', [
     'none' => NoneConfig::class,
     'input' => InputConfig::class,
     'select' => SelectConfig::class,
@@ -79,9 +81,10 @@ class InputConfig implements TypeConfig
         public readonly Behaviour $behavor = new Behaviour(),
         // Technically should be string|int, but Serde doesn't support
         // unions yet. Does this mean we have to? :-(
-        public readonly ?string $default = null,
-        // List of values. Should be an array?
-        public readonly string $dontRemapTablesOnCopy = '',
+        //public readonly ?string $default = null,
+
+        #[SequenceField(implodeOn: ',')]
+        public readonly array $dontRemapTablesOnCopy = [],
         public readonly FieldControl $fieldControl = new FieldControl(),
         // Array seems like an odd type, but that's what the docs say it is.
         public readonly array $fieldInformation = [],
@@ -95,10 +98,10 @@ class InputConfig implements TypeConfig
 class FieldControl
 {
     public function __construct(
-        public readonly FieldControlAddRecord $addRecord = new FieldContolAddRecord(),
-        public readonly FieldControlEditPopup $editPopup = new FieldContolEditPopup(),
-        public readonly FieldControlListModule $listModule = new FieldContolListModule(),
-        public readonly FieldControlResetSelection $resetSelection = new FieldContolResetSelection(),
+        public readonly FieldControlAddRecord $addRecord = new FieldControlAddRecord(),
+        public readonly FieldControlEditPopup $editPopup = new FieldControlEditPopup(),
+        public readonly FieldControlListModule $listModule = new FieldControlListModule(),
+        public readonly FieldControlResetSelection $resetSelection = new FieldControlResetSelection(),
     ) {}
 }
 
@@ -141,8 +144,14 @@ class FieldControlEditPopupOptions
 {
     public function __construct(
         public readonly string $title = 'LLL:EXT:core/Resources/Private/Language/locallang_core.xlf:labels.edit',
-        // This... tells me we need a field flattener for dictionaries as well as Sequences. Crap.
-        public readonly string $windowOpenParameters = 'height=800,width=600,status=0,menubar=0,scrollbars=1',
+        #[DictionaryField(implodeOn: ',', joinOn: '=')]
+        public readonly array $windowOpenParameters = [
+            'height' => 800,
+            'width' => 600,
+            'status' => 0,
+            'menubar' => 0,
+            'scrollbars'=> 1,
+        ],
     ) {}
 }
 

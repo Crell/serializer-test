@@ -6,6 +6,7 @@ namespace Crell\SerializerTest\SerdeTCA;
 
 use Crell\Serde\Field;
 use Crell\Serde\Renaming\Cases;
+use Crell\Serde\SequenceField;
 
 class Ctrl
 {
@@ -15,8 +16,8 @@ class Ctrl
 
         /* Processing */
         public readonly bool $adminOnly = false,
-        // List of values, so should maybe be an array?
-        public readonly string $copyAfterDuplFields = '',
+        #[SequenceField(implodeOn: ', ')]
+        public readonly array $copyAfterDuplFields = [],
         public readonly string $crdate = 'crdate',
         #[Field(renameWith: Cases::snake_case)]
         public readonly string $cruserId = 'cruser_id',
@@ -35,15 +36,15 @@ class Ctrl
         // This is deprecated in the docs; not clear if the whole field is or just some uses.
         public readonly string $languageField = '',
         public readonly string $origUid = '',
-        // Ain't renaming wonderful?
+        // Docs say this is named wrong, so let's fix that.
         #[Field(serializedName: 'prependAtCopy')]
         public readonly string $appendAtCopy = '',
         public readonly bool $readOnly = false,
         public readonly CtrlRootLevel $rootLevel = CtrlRootLevel::PageTreeOnly,
-        // List of values, so should maybe be an array?
-        public readonly string $searchFields = '',
-        // List of values, so should maybe be an array?
-        public readonly string $shadowColumnsForNewPlaceholders = '',
+        #[SequenceField(implodeOn: ',')]
+        public readonly array $searchFields = [],
+        #[SequenceField(implodeOn: ',')]
+        public readonly array $shadowColumnsForNewPlaceholders = [],
         #[Field(serializedName: 'sortby')]
         public readonly string $sortBy = '',
         public readonly string $translationSource = '',
@@ -55,8 +56,8 @@ class Ctrl
         public readonly array $typeiconClasses = [],
         #[Field(renameWith: Cases::snake_case)]
         public readonly string $typeiconColumn = '',
-        // List of values, so should maybe be an array?
-        public readonly string $useColumnsForDefaultValues = '',
+        #[SequenceField(implodeOn: ',')]
+        public readonly array $useColumnsForDefaultValues = [],
         public readonly bool $versioningWS = true,
 
         /* Display */
@@ -69,7 +70,8 @@ class Ctrl
         public readonly array $formattedLabelUserFuncOptions = [],
         // List of values, so should maybe be an array?
         #[Field(renameWith: Cases::snake_case)]
-        public readonly string $labelAlt = '',
+        #[SequenceField(implodeOn: ',')]
+        public readonly array $labelAlt = [],
        #[Field(renameWith: Cases::snake_case)]
         public readonly bool $labelAltForce = false,
         #[Field(serializedName: 'label_userFunc')]

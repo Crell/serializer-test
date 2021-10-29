@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace Crell\SerializerTest\SerdeConfig\System;
 
+use Crell\Serde\DictionaryField;
 use Crell\Serde\Field;
 
 class Caching implements \ArrayAccess
 {
     public function __construct(
         /** @var array<string, CacheConfig> */
-        #[Field(arrayType: CacheConfig::class)]
+        #[DictionaryField(arrayType: CacheConfig::class)]
         public readonly array $cacheConfigurations = [],
     ) {}
 
