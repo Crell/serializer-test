@@ -61,7 +61,18 @@ interface RenderType {}
 
 class SelectSingle implements RenderType
 {
+    public function __construct(
+        public readonly bool $allowNonIdValues = false,
+        // No idea if this is the right default. Docs are not clear.
+        public readonly AuthMode $authMode = AuthMode::explicitDeny,
+    ) {}
+}
 
+enum AuthMode
+{
+    case explicitAllow;
+    case explicitDeny;
+    case individual;
 }
 
 class NoneColumn implements ColumnType

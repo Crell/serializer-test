@@ -94,7 +94,12 @@ class SerdeTCATest extends TestCase
 
                 self::assertEquals(30, $out->columns['fileinfo']->config->type->cols);
 
+                // The nested items list inside the flattened type object. Because hell yeah.
                 self::assertEquals('LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file.type.unknown', $out->columns['type']->config->type->items[0]->label);
+                self::assertCount(6, $out->columns['type']->config->type->items);
+
+                // Check a value in the render part of the config.
+                self::assertEquals(false, $out->columns['type']->config->render->allowNonIdValues);
             },
         ];
     }
