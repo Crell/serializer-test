@@ -254,6 +254,56 @@ class Behaviour
 class SelectColumn implements ColumnType
 {
     public function __construct(
-        public readonly bool $readOnly
+        public readonly bool $readOnly,
+        #[SequenceField(arrayType: Item::class)]
+        public readonly array $items,
+        #[DictionaryField]
+        public readonly array $itemGroups = [],
     ) {}
+}
+
+class Item
+{
+    public function __construct(
+        public readonly string $label,
+        // Unclear if this needs to be int|string, which would cause probems.
+        public readonly int $value,
+        public readonly string $icon = '',
+        public readonly ?string $group = null,
+        public readonly ItemAuth $auth = ItemAuth::None,
+    ) {}
+
+    public function __serialize(): array
+    {
+        $arr = [$this->label, $this->value];
+        if ($this->icon) {
+            $arr[] = $this->icon;
+        }
+        if ($this->group) {
+            $arr[] = $this->group;
+        }
+        if ($this->auth !== ItemAuth::None) {
+            $arr[] = $this->auth;
+        }
+        return $arr;
+    }
+
+    public function __unserialize(array $in): void
+    {
+        $map = ['label', 'value', 'icon', 'group', 'auth'];
+
+        foreach ($map as $k => $name) {
+            if (!isset($in[$k])) {
+                break;
+            }
+            $this->$name = $in[$k];
+        }
+    }
+}
+
+enum ItemAuth
+{
+    case EXPL_ALLOW;
+    case EXPL_DENY;
+    case None;
 }

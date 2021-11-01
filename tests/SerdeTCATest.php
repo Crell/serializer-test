@@ -7,6 +7,7 @@ namespace Crell\SerializerTest;
 use Crell\AttributeUtils\Analyzer;
 use Crell\AttributeUtils\MemoryCacheAnalyzer;
 use Crell\Serde\Formatter\ArrayFormatter;
+use Crell\Serde\PropertyHandler\NativeSerializePropertyReader;
 use Crell\Serde\Serde;
 use Crell\Serde\SerdeCommon;
 use Crell\SerializerTest\SerdeConfig\BackEnd;
@@ -36,6 +37,7 @@ class SerdeTCATest extends TestCase
         $analyzer = new MemoryCacheAnalyzer(new Analyzer());
         return new SerdeCommon(
             analyzer: $analyzer,
+            handlers: [new NativeSerializePropertyReader()],
             formatters: [new ArrayFormatter($analyzer)],
         );
     }
@@ -92,6 +94,7 @@ class SerdeTCATest extends TestCase
 
                 self::assertEquals(30, $out->columns['fileinfo']->config->type->cols);
 
+                self::assertEquals('LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file.type.unknown', $out->columns['type']->config->type->items[0]->label);
             },
         ];
     }
