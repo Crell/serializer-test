@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Crell\SerializerTest\SerdeTCA;
 
+use Crell\Serde\DictionaryField;
 use Crell\Serde\Field;
 use Crell\Serde\Renaming\Cases;
 use Crell\Serde\SequenceField;
@@ -53,6 +54,7 @@ class Ctrl
         public readonly string $tstamp = '',
         public readonly string $type = '',
         #[Field(renameWith: Cases::snake_case)]
+        #[DictionaryField]
         public readonly array $typeiconClasses = [],
         #[Field(renameWith: Cases::snake_case)]
         public readonly string $typeiconColumn = '',

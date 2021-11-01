@@ -14,7 +14,7 @@ class Column
 {
     public function __construct(
         public readonly string $label,
-        public readonly TypeConfig $config,
+        public readonly ColumnConfig $config = new ColumnConfig(),
         public readonly string $description = '',
         // This is a union type, so... no idea what to do here.
         //public readonly string|array $displayCond = [],
@@ -27,6 +27,16 @@ class Column
     ) {}
 }
 
+class ColumnConfig
+{
+    public function __construct(
+        #[Field(flatten: true, serializedName: 'junk')]
+        public readonly ColumnType $type = new NoneColumn(),
+        #[Field(flatten: true)]
+        public readonly RenderType $render = new NoRenderType(),
+    ) {}
+}
+
 enum OnChange: string
 {
     case None = '';
@@ -34,16 +44,27 @@ enum OnChange: string
 }
 
 #[StaticTypeMap('type', [
-    'none' => NoneConfig::class,
-    'input' => InputConfig::class,
-    'select' => SelectConfig::class,
+    'none' => NoneColumn::class,
+    'input' => InputColumn::class,
+    'select' => SelectColumn::class,
+    'check' => CheckColumn::class,
+    'inline' => InlineColumn::class,
 ])]
-interface TypeConfig
+interface ColumnType {}
+
+#[StaticTypeMap('renderType', [
+    'none' => NoRenderType::class,
+    'fileInfo' => FileInfoRenderType::class,
+    'selectSingle' => SelectSingle::class,
+])]
+interface RenderType {}
+
+class SelectSingle implements RenderType
 {
 
 }
 
-class NoneConfig implements TypeConfig
+class NoneColumn implements ColumnType
 {
     public function __construct(
         public readonly int $cols = 30,
@@ -73,12 +94,12 @@ class NoneConfigFormat
 }
 
 
-class InputConfig implements TypeConfig
+class InputColumn implements ColumnType
 {
     public function __construct(
         /* Common fields. */
         public readonly ?int $autoSizeMax = null,
-        public readonly Behaviour $behavor = new Behaviour(),
+        public readonly Behaviour $behaviour = new Behaviour(),
         // Technically should be string|int, but Serde doesn't support
         // unions yet. Does this mean we have to? :-(
         //public readonly ?string $default = null,
@@ -91,6 +112,20 @@ class InputConfig implements TypeConfig
 
         // And more Common fields I am not going to model now because they're huge...
 
+
+    ) {}
+}
+
+class CheckColumn implements ColumnType
+{
+    public function __construct(
+
+    ) {}
+}
+
+class InlineColumn implements ColumnType
+{
+    public function __construct(
 
     ) {}
 }
@@ -180,7 +215,15 @@ enum SetValue
     case append;
 }
 
-interface RenderType {}
+class FileInfoRenderType implements RenderType
+{
+
+}
+
+class NoRenderType implements RenderType
+{
+
+}
 
 class ColorPicker implements RenderType
 {
@@ -208,7 +251,7 @@ class Behaviour
     ) {}
 }
 
-class SelectConfig implements TypeConfig
+class SelectColumn implements ColumnType
 {
     public function __construct(
         public readonly bool $readOnly

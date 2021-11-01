@@ -61,7 +61,7 @@ class SerdeTCATest extends TestCase
      * @test
      * @dataProvider tableProvider
      */
-    public function configuration(string $table, string $class, callable $tests): void
+    public function table_test(string $table, string $class, callable $tests): void
     {
         $serde = $this->getSerde();
 
@@ -87,8 +87,10 @@ class SerdeTCATest extends TestCase
                 self::assertEquals(true, $out->ctrl->security->ignoreRootLevelRestriction);
                 self::assertEquals('mimetypes-media-image', $out->ctrl->typeiconClasses[2]);
 
-                self::assertEquals(OnChange::None, $out->columns['fileinfo']->config->onChange);
+                self::assertEquals(OnChange::None, $out->columns['fileinfo']->onChange);
                 self::assertEquals('LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_file.storage', $out->columns['storage']->label);
+
+                self::assertEquals(30, $out->columns['fileinfo']->config->type->cols);
 
             },
         ];
