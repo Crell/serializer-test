@@ -100,6 +100,9 @@ class SerdeTCATest extends TestCase
 
                 // Check a value in the render part of the config.
                 self::assertEquals(false, $out->columns['type']->config->render->allowNonIdValues);
+
+                // The types section.
+                self::assertEquals(['fileinfo', 'storage', 'missing'], $out->types[1]->showitem);
             },
         ];
     }
