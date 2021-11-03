@@ -70,7 +70,6 @@ class Ctrl
         public readonly string $formattedLabelUserFunc = '',
         #[Field(serializedName: 'formattedLabel_userFunc_options')]
         public readonly array $formattedLabelUserFuncOptions = [],
-        // List of values, so should maybe be an array?
         #[Field(renameWith: Cases::snake_case)]
         #[SequenceField(implodeOn: ',')]
         public readonly array $labelAlt = [],
