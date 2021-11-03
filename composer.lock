@@ -8,11 +8,11 @@
     "packages": [
         {
             "name": "crell/attributeutils",
-            "version": "0.3.3",
+            "version": "0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crell/AttributeUtils.git",
-                "reference": "0444ab9c2906251a1312763a29770c78c583f1d2"
+                "reference": "ed7a0d1bc5494dcb1e967e5b1117a746eb2fc82e"
             },
             "require": {
                 "crell/fp": ">=0.1.1",
@@ -67,7 +67,7 @@
                 "Attributes",
                 "Reflection"
             ],
-            "time": "2021-10-29T15:28:42+00:00"
+            "time": "2021-11-03T17:12:30+00:00"
         },
         {
             "name": "crell/fp",
@@ -143,10 +143,10 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Crell/Serde.git",
-                "reference": "3d2e67c40f9919c89d55d59c1a5fa826adc1eb54"
+                "reference": "738fb3b4e57fc736e62e9abf208ad991406fda93"
             },
             "require": {
-                "crell/attributeutils": ">= 0.3.3",
+                "crell/attributeutils": ">= 0.4.1",
                 "crell/fp": ">= 0.2.8",
                 "php": "~8.0"
             },
@@ -205,7 +205,7 @@
                 "Database",
                 "Serde"
             ],
-            "time": "2021-11-01T22:10:23+00:00"
+            "time": "2021-11-03T18:17:48+00:00"
         },
         {
             "name": "doctrine/annotations",
